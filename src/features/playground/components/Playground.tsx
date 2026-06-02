@@ -1,5 +1,5 @@
-import { Card } from "../../../components/Card";
-import { UserProfile } from "../../profile/components/UserProfile";
+import { Card } from "@/components/Card";
+import { UserProfile } from "@/features/profile/components/UserProfile";
 
 export function Playground() {
   return (

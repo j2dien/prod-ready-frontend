@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StatePlaygroundRouteImport } from './routes/state-playground'
 import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ComponentsPlaygroundRouteImport } from './routes/components-playground'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StatePlaygroundRoute = StatePlaygroundRouteImport.update({
+  id: '/state-playground',
+  path: '/state-playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompositionRoute = CompositionRouteImport.update({
   id: '/composition',
   path: '/composition',
@@ -33,34 +39,54 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/components-playground' | '/composition'
+  fullPaths:
+    | '/'
+    | '/components-playground'
+    | '/composition'
+    | '/state-playground'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/components-playground' | '/composition'
-  id: '__root__' | '/' | '/components-playground' | '/composition'
+  to: '/' | '/components-playground' | '/composition' | '/state-playground'
+  id:
+    | '__root__'
+    | '/'
+    | '/components-playground'
+    | '/composition'
+    | '/state-playground'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComponentsPlaygroundRoute: typeof ComponentsPlaygroundRoute
   CompositionRoute: typeof CompositionRoute
+  StatePlaygroundRoute: typeof StatePlaygroundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/state-playground': {
+      id: '/state-playground'
+      path: '/state-playground'
+      fullPath: '/state-playground'
+      preLoaderRoute: typeof StatePlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/composition': {
       id: '/composition'
       path: '/composition'
@@ -89,6 +115,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComponentsPlaygroundRoute: ComponentsPlaygroundRoute,
   CompositionRoute: CompositionRoute,
+  StatePlaygroundRoute: StatePlaygroundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

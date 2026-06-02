@@ -8,6 +8,7 @@ export const Route = createRootRoute({
         <nav className="text-3xl space-x-4 m-2">
           <Link to="/" className="[&.active]:font-bold">Home</Link>
           <Link to="/components-playground" className="[&.active]:font-bold">Playground</Link>
+          <Link to="/state-playground" className="[&.active]:font-bold">State</Link>
           <Link to="/composition" className="[&.active]:font-bold">Composition</Link>
           <Link to="/about" className="[&.active]:font-bold">About</Link>
         </nav>
