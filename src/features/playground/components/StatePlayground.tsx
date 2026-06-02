@@ -19,9 +19,6 @@ export function StatePlayground() {
   const handleFirstNameChange = (newFirstName: string) => {
     setUser((prev) => ({ ...prev, firstName: newFirstName }));
   };
-  const handleLastNameChange = (newLastName: string) => {
-    setUser((prev) => ({ ...prev, lastName: newLastName }));
-  };
 
   return (
     <div
@@ -47,13 +44,6 @@ export function StatePlayground() {
           onChange={(e) => handleFirstNameChange(e.target.value)}
           value={user.firstName}
           placeholder="First Name"
-          className={`w-full p-2 border rounded text-gray-900 ${isDarkMode ? "placeholder-gray-400 border-white text-white" : ""}`}
-        />
-        <input
-          type="text"
-          onChange={(e) => handleLastNameChange(e.target.value)}
-          value={user.lastName}
-          placeholder="Last Name"
           className={`w-full p-2 border rounded text-gray-900 ${isDarkMode ? "placeholder-gray-400 border-white text-white" : ""}`}
         />
       </div>

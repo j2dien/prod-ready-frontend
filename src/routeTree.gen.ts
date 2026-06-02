@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StatePlaygroundRouteImport } from './routes/state-playground'
+import { Route as StateChallengeRouteImport } from './routes/state-challenge'
 import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ComponentsPlaygroundRouteImport } from './routes/components-playground'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StatePlaygroundRoute = StatePlaygroundRouteImport.update({
   id: '/state-playground',
   path: '/state-playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StateChallengeRoute = StateChallengeRouteImport.update({
+  id: '/state-challenge',
+  path: '/state-challenge',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompositionRoute = CompositionRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/state-challenge': typeof StateChallengeRoute
   '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/state-challenge': typeof StateChallengeRoute
   '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRoutesById {
@@ -52,6 +60,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/state-challenge': typeof StateChallengeRoute
   '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRouteTypes {
@@ -60,14 +69,21 @@ export interface FileRouteTypes {
     | '/'
     | '/components-playground'
     | '/composition'
+    | '/state-challenge'
     | '/state-playground'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/components-playground' | '/composition' | '/state-playground'
+  to:
+    | '/'
+    | '/components-playground'
+    | '/composition'
+    | '/state-challenge'
+    | '/state-playground'
   id:
     | '__root__'
     | '/'
     | '/components-playground'
     | '/composition'
+    | '/state-challenge'
     | '/state-playground'
   fileRoutesById: FileRoutesById
 }
@@ -75,6 +91,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComponentsPlaygroundRoute: typeof ComponentsPlaygroundRoute
   CompositionRoute: typeof CompositionRoute
+  StateChallengeRoute: typeof StateChallengeRoute
   StatePlaygroundRoute: typeof StatePlaygroundRoute
 }
 
@@ -85,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/state-playground'
       fullPath: '/state-playground'
       preLoaderRoute: typeof StatePlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/state-challenge': {
+      id: '/state-challenge'
+      path: '/state-challenge'
+      fullPath: '/state-challenge'
+      preLoaderRoute: typeof StateChallengeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/composition': {
@@ -115,6 +139,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComponentsPlaygroundRoute: ComponentsPlaygroundRoute,
   CompositionRoute: CompositionRoute,
+  StateChallengeRoute: StateChallengeRoute,
   StatePlaygroundRoute: StatePlaygroundRoute,
 }
 export const routeTree = rootRouteImport
