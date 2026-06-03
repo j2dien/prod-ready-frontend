@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 interface UserProfile {
   firstName: string;
@@ -24,7 +25,14 @@ export function StatePlayground() {
     <div
       className={`min-h-screen p-8 transition-colors ${isDarkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}
     >
-      <h1 className="text-3xl font-bold mb-6">State Architect's Playground</h1>
+      <Link
+        to="/state-challenge"
+        className="bg-green-600 text-white px-4 py-2 rounded-md font-semibold "
+      >
+        State Challenge
+      </Link>
+
+      <h1 className="text-3xl font-bold pt-6">State Architect's Playground</h1>
 
       <button
         onClick={toggleDarkMode}
