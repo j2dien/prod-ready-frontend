@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StatePlaygroundRouteImport } from './routes/state-playground'
 import { Route as StateChallengeRouteImport } from './routes/state-challenge'
 import { Route as EffectPlaygroundRouteImport } from './routes/effect-playground'
+import { Route as EffectChallengeRouteImport } from './routes/effect-challenge'
 import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ComponentsPlaygroundRouteImport } from './routes/components-playground'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const StateChallengeRoute = StateChallengeRouteImport.update({
 const EffectPlaygroundRoute = EffectPlaygroundRouteImport.update({
   id: '/effect-playground',
   path: '/effect-playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EffectChallengeRoute = EffectChallengeRouteImport.update({
+  id: '/effect-challenge',
+  path: '/effect-challenge',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompositionRoute = CompositionRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/effect-challenge': typeof EffectChallengeRoute
   '/effect-playground': typeof EffectPlaygroundRoute
   '/state-challenge': typeof StateChallengeRoute
   '/state-playground': typeof StatePlaygroundRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/effect-challenge': typeof EffectChallengeRoute
   '/effect-playground': typeof EffectPlaygroundRoute
   '/state-challenge': typeof StateChallengeRoute
   '/state-playground': typeof StatePlaygroundRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
+  '/effect-challenge': typeof EffectChallengeRoute
   '/effect-playground': typeof EffectPlaygroundRoute
   '/state-challenge': typeof StateChallengeRoute
   '/state-playground': typeof StatePlaygroundRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/components-playground'
     | '/composition'
+    | '/effect-challenge'
     | '/effect-playground'
     | '/state-challenge'
     | '/state-playground'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/components-playground'
     | '/composition'
+    | '/effect-challenge'
     | '/effect-playground'
     | '/state-challenge'
     | '/state-playground'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/components-playground'
     | '/composition'
+    | '/effect-challenge'
     | '/effect-playground'
     | '/state-challenge'
     | '/state-playground'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComponentsPlaygroundRoute: typeof ComponentsPlaygroundRoute
   CompositionRoute: typeof CompositionRoute
+  EffectChallengeRoute: typeof EffectChallengeRoute
   EffectPlaygroundRoute: typeof EffectPlaygroundRoute
   StateChallengeRoute: typeof StateChallengeRoute
   StatePlaygroundRoute: typeof StatePlaygroundRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/effect-playground'
       fullPath: '/effect-playground'
       preLoaderRoute: typeof EffectPlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/effect-challenge': {
+      id: '/effect-challenge'
+      path: '/effect-challenge'
+      fullPath: '/effect-challenge'
+      preLoaderRoute: typeof EffectChallengeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/composition': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComponentsPlaygroundRoute: ComponentsPlaygroundRoute,
   CompositionRoute: CompositionRoute,
+  EffectChallengeRoute: EffectChallengeRoute,
   EffectPlaygroundRoute: EffectPlaygroundRoute,
   StateChallengeRoute: StateChallengeRoute,
   StatePlaygroundRoute: StatePlaygroundRoute,

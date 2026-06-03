@@ -1,3 +1,5 @@
+import { WindowTracker } from "@/components/WindowTracker";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export function EffectPlayground() {
@@ -13,14 +15,22 @@ export function EffectPlayground() {
 
   return (
     <div className="p-8">
+      <Link
+        to="/effect-challenge"
+        className="bg-green-600 text-white px-4 py-2 rounded-md font-semibold "
+      >
+        Effect Challenge
+      </Link>
       {console.log("2. Paint:The UI is being painted!")}
-      <h1 className="text-2xl mb-4">Check your console!</h1>
+      <h1 className="text-2xl mb-4 pt-4">Check your console!</h1>
       <button
         onClick={() => setCount(count + 1)}
         className="px-4 py-2 bg-blue-600 text-white rounded"
       >
         Trigger Re-render
       </button>
+
+      <WindowTracker />
     </div>
   );
 }
