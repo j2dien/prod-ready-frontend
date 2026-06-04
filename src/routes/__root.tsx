@@ -20,9 +20,6 @@ export const Route = createRootRoute({
             <Link to="/effect-playground" className="[&.active]:font-bold">
               Effect
             </Link>
-            <Link to="/composition" className="[&.active]:font-bold">
-              Composition
-            </Link>
             <Link to="/about" className="[&.active]:font-bold">
               About
             </Link>
