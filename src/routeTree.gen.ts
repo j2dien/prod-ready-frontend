@@ -15,6 +15,7 @@ import { Route as EffectPlaygroundRouteImport } from './routes/effect-playground
 import { Route as EffectChallengeRouteImport } from './routes/effect-challenge'
 import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ComponentsPlaygroundRouteImport } from './routes/components-playground'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const StatePlaygroundRoute = StatePlaygroundRouteImport.update({
@@ -47,6 +48,11 @@ const ComponentsPlaygroundRoute = ComponentsPlaygroundRouteImport.update({
   path: '/components-playground',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
   '/effect-challenge': typeof EffectChallengeRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
   '/effect-challenge': typeof EffectChallengeRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
   '/composition': typeof CompositionRoute
   '/effect-challenge': typeof EffectChallengeRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/components-playground'
     | '/composition'
     | '/effect-challenge'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/components-playground'
     | '/composition'
     | '/effect-challenge'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/components-playground'
     | '/composition'
     | '/effect-challenge'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   ComponentsPlaygroundRoute: typeof ComponentsPlaygroundRoute
   CompositionRoute: typeof CompositionRoute
   EffectChallengeRoute: typeof EffectChallengeRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsPlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   ComponentsPlaygroundRoute: ComponentsPlaygroundRoute,
   CompositionRoute: CompositionRoute,
   EffectChallengeRoute: EffectChallengeRoute,
